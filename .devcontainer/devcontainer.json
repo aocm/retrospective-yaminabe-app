@@ -1,0 +1,11 @@
+{
+    "name": "yaminabe-app",
+    "dockerComposeFile": [
+        "../docker-compose.yml"
+    ],
+    "service": "app",
+    "extensions": [
+        "octref.vetur",
+    ],
+    "shutdownAction": "stopCompose"
+}
