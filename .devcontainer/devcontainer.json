@@ -1,11 +1,11 @@
 {
-    "name": "yaminabe-app",
+    "name": "闇鍋 Remote-Container",
     "dockerComposeFile": [
         "../docker-compose.yml"
     ],
     "service": "app",
+    "workspaceFolder": "/usr/src/app",
     "extensions": [
         "octref.vetur",
-    ],
-    "shutdownAction": "stopCompose"
+    ]
 }
