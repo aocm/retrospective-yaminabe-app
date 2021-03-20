@@ -8,24 +8,23 @@
       </ion-toolbar>
     </ion-header>
     
-    <ion-content :fullscreen="true" v-if="message">
+    <ion-content :fullscreen="true" v-if="ingredients">
       <ion-item>
         <ion-icon :icon="personCircle" color="primary"></ion-icon>
         <ion-label class="ion-text-wrap">
           <h2>
-            {{ message.fromName }}
+            {{ ingredients.fromName }}
             <span class="date">
-              <ion-note>{{ message.date }}</ion-note>
+              <ion-note>{{ ingredients.date }}</ion-note>
             </span>
           </h2>
-          <h3>To: <ion-note>Me</ion-note></h3>
         </ion-label>
       </ion-item>
       
       <div class="ion-padding">
-        <h1>{{ message.subject }}</h1>
+        <h1>{{ ingredients.subject }}</h1>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          {{ingredients.contents}}
         </p>
       </div>
     </ion-content>
@@ -36,7 +35,7 @@
 import { useRoute } from 'vue-router';
 import { IonBackButton, IonButtons, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonNote, IonPage, IonToolbar } from '@ionic/vue';
 import { personCircle } from 'ionicons/icons';
-import { getMessage } from '../data/messages';
+import { getIngredients } from '../data/ingredients';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -53,9 +52,9 @@ export default defineComponent({
   },
   setup() {
     const route = useRoute();
-    const message = getMessage(parseInt(route.params.id as string, 10));
+    const ingredients = getIngredients(parseInt(route.params.id as string, 10));
 
-    return { message }
+    return { ingredients }
   },
   components: {
     IonBackButton,

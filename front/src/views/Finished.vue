@@ -4,13 +4,7 @@
       <ion-toolbar>
         <ion-title>{{`終了 ${finishedList.length} / 全体 ${ingredientsList.length} 件`}}</ion-title>
         <ion-buttons slot="start">
-          <ion-back-button :text="'戻る'" default-href="/"></ion-back-button>
-        </ion-buttons>
-
-        <ion-buttons slot="end">
-          <ion-button @click="() => router.push('/finished')">
-            Done
-          </ion-button>
+          <ion-back-button :text="'戻る'" default-href="/home"></ion-back-button>
         </ion-buttons>
 
         <ion-title>Buttons</ion-title>
@@ -34,7 +28,7 @@ import { IonContent, IonHeader,IonBackButton, IonList, IonPage, IonRefresher, Io
 import IngredientsItem from '@/components/IngredientsItem.vue';
 import { defineComponent } from 'vue';
 import { getIngredientsList } from '@/data/ingredients';
-import { useRouter } from 'vue-router';
+import { calendar, personCircle } from 'ionicons/icons';
 
 export default defineComponent({
   name: 'Home',
@@ -45,9 +39,9 @@ export default defineComponent({
     const afterTabChange = () => {
       // do something after tab change
     }
-    const router = useRouter();
     return {
-      router,
+      personCircle,
+      calendar,
       beforeTabChange,
       afterTabChange,
       ingredientsList: getIngredientsList(),

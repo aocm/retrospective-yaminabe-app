@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
 import Top from '../views/Top.vue'
 import Home from '../views/Home.vue'
+import Finished from '../views/Finished.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -15,8 +16,13 @@ const routes: Array<RouteRecordRaw> = [
     component: Home
   },
   {
-    path: '/message/:id',
-    component: () => import('../views/ViewMessage.vue')
+    path: '/finished',
+    name: 'Finished',
+    component: Finished
+  },
+  {
+    path: '/Ingredients/:id',
+    component: () => import('../views/ViewIngredients.vue')
   }
 ]
 
