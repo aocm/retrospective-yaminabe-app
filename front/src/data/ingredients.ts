@@ -33,4 +33,6 @@ export const readAction = async (data: Ingredients) => {
   return data
 };
 
-export const getIngredients = (id: number) => state.ingredientsList.find(m => m.id === id);
+export const getIngredients = (id: number) => state.ingredientsList.find(i => i.id === id);
+
+export const getFinishedList = () => state.ingredientsList.filter(i => i.read);

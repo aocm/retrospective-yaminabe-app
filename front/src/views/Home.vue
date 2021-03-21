@@ -27,7 +27,7 @@
       </ion-refresher>
       <ion-list>
         <IngredientsItem
-          v-for="ingredients in ingredientsList" 
+          v-for="ingredients in ingredientsList.filter(i => !i.read)" 
           :key="ingredients.id" 
           :ingredients="ingredients" 
           @click="onRead(ingredients)"
@@ -42,7 +42,7 @@
 import { IonContent, IonHeader,IonBackButton, IonList, IonPage, IonRefresher, IonRefresherContent, IonTitle, IonToolbar } from '@ionic/vue';
 import IngredientsItem from '@/components/IngredientsItem.vue';
 import { defineComponent } from 'vue';
-import { getIngredientsList, fetchIngredients, readAction } from '@/data/ingredients';
+import { getIngredientsList, fetchIngredients, readAction,getFinishedList } from '@/data/ingredients';
 import { useRouter } from 'vue-router';
 
 export default defineComponent({
@@ -52,7 +52,7 @@ export default defineComponent({
     return {
       router,
       ingredientsList: getIngredientsList(),
-      finishedList: getIngredientsList()
+      finishedList: getFinishedList()
     }
   },
 

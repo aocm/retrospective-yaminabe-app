@@ -16,7 +16,7 @@
         <ion-refresher-content></ion-refresher-content>
       </ion-refresher>
       <ion-list>
-        <IngredientsItem v-for="ingredients in ingredientsList" :key="ingredients.id" :ingredients="ingredients" />
+        <IngredientsItem v-for="ingredients in finishedList" :key="ingredients.id" :ingredients="ingredients" />
       </ion-list>
     </ion-content>
   </ion-page>
@@ -27,25 +27,14 @@
 import { IonContent, IonHeader,IonBackButton, IonList, IonPage, IonRefresher, IonRefresherContent, IonTitle, IonToolbar } from '@ionic/vue';
 import IngredientsItem from '@/components/IngredientsItem.vue';
 import { defineComponent } from 'vue';
-import { getIngredientsList } from '@/data/ingredients';
-import { calendar, personCircle } from 'ionicons/icons';
+import { getIngredientsList,getFinishedList } from '@/data/ingredients';
 
 export default defineComponent({
   name: 'Home',
   setup() {
-    const beforeTabChange = () => {
-      // do something before tab change
-    }
-    const afterTabChange = () => {
-      // do something after tab change
-    }
     return {
-      personCircle,
-      calendar,
-      beforeTabChange,
-      afterTabChange,
       ingredientsList: getIngredientsList(),
-      finishedList: getIngredientsList()
+      finishedList: getFinishedList()
     }
   },
   methods: {
