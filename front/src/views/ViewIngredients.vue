@@ -7,7 +7,6 @@
         </ion-buttons>
       </ion-toolbar>
     </ion-header>
-    
     <ion-content :fullscreen="true" v-if="ingredients">
       <ion-item>
         <ion-icon :icon="personCircle" color="primary"></ion-icon>
@@ -36,10 +35,11 @@ import { useRoute } from 'vue-router';
 import { IonBackButton, IonButtons, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonNote, IonPage, IonToolbar } from '@ionic/vue';
 import { personCircle } from 'ionicons/icons';
 import { getIngredients } from '../data/ingredients';
-import { defineComponent } from 'vue';
+import { defineComponent, computed } from 'vue';
+import { useStore } from "vuex"
 
 export default defineComponent({
-  name: 'Home',
+  name: 'ViewIngredients',
   data() {
     return {
       personCircle,
@@ -52,9 +52,14 @@ export default defineComponent({
   },
   setup() {
     const route = useRoute();
-    const ingredients = getIngredients(parseInt(route.params.id as string, 10));
+    const store = useStore()
+    // const ingredients = getIngredients(parseInt(route.params.id as string, 10));
 
-    return { ingredients }
+    return {
+      route,
+      store,
+      ingredients: computed(() => store.getters.findById(Number(route.params.id))),
+    }
   },
   components: {
     IonBackButton,

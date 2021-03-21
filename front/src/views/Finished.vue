@@ -2,7 +2,7 @@
   <ion-page>
     <ion-header :translucent="true">
       <ion-toolbar>
-        <ion-title>{{`終了 ${finishedList.length} / 全体 ${ingredientsList.length} 件`}}</ion-title>
+        <ion-title>{{`終了 ${finishedCount} / 全体 ${ingredientsList.length} 件`}}</ion-title>
         <ion-buttons slot="start">
           <ion-back-button :text="'戻る'" default-href="/home"></ion-back-button>
         </ion-buttons>
@@ -27,20 +27,25 @@
 
 import { IonContent, IonHeader, IonBackButton, IonButtons, IonList, IonPage, IonRefresher, IonRefresherContent, IonTitle, IonToolbar,IonGrid  } from '@ionic/vue';
 import IngredientsItem from '@/components/IngredientsItem.vue';
-import { defineComponent } from 'vue';
+import { defineComponent, computed } from 'vue';
 import { getIngredientsList, getFinishedList, fetchIngredients } from '@/data/ingredients';
+import { useStore } from "vuex"
 
 export default defineComponent({
-  name: 'Home',
+  name: 'Finished',
   setup() {
+    const store = useStore()
     return {
-      ingredientsList: getIngredientsList(),
-      finishedList: getFinishedList()
+      store,
+      ingredientsList: computed(() => store.getters.allItem),
+      finishedList: computed(() => store.getters.finishedList),
+      finishedCount: computed(() => store.getters.finishedCount),
+      onRefresh:() => store.dispatch("refresh"),
     }
   },
   methods: {
     async refresh(ev: CustomEvent){
-      await fetchIngredients()
+      await this.store.dispatch("refresh")
       ev.detail.complete();
     },
   },

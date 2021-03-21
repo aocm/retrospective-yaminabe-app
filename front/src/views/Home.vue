@@ -2,7 +2,7 @@
   <ion-page>
     <ion-header :translucent="true">
       <ion-toolbar>
-        <ion-title>{{`終了 ${finishedList.length} / 全体 ${ingredientsList.length} 件`}}</ion-title>
+        <ion-title>{{`終了 ${finishedCount} / 全体 ${ingredientsList.length} 件`}}</ion-title>
         <ion-buttons slot="start">
           <ion-back-button :text="'戻る'" default-href="/"></ion-back-button>
         </ion-buttons>
@@ -42,33 +42,34 @@
 <script lang="ts">
 import { IonContent, IonHeader,IonBackButton, IonButtons, IonButton, IonList, IonPage, IonRefresher, IonRefresherContent, IonTitle, IonToolbar,IonGrid } from '@ionic/vue';
 import IngredientsItem from '@/components/IngredientsItem.vue';
-import { defineComponent } from 'vue';
+import { defineComponent, computed } from 'vue';
 import { getIngredientsList, fetchIngredients, readAction,getFinishedList } from '@/data/ingredients';
 import { useRouter } from 'vue-router';
+import { useStore } from "vuex"
 
 export default defineComponent({
   name: 'Home',
   setup() {
     const router = useRouter();
-    fetchIngredients();
+    const store = useStore()
     return {
       router,
-      ingredientsList: getIngredientsList(),
+      store,
+      ingredientsList: computed(() => store.getters.allItem),
+      finishedCount: computed(() => store.getters.finishedCount),
+      onRefresh:() => store.dispatch("refresh"),
+      onRead:(data: any) => {
+        store.dispatch("read", data)
+      },
       finishedList: getFinishedList()
     }
   },
 
   methods: {
     async refresh(ev: CustomEvent){
-      await fetchIngredients()
+      await this.store.dispatch("refresh")
       ev.detail.complete();
     },
-    async onRefresh(){
-      await fetchIngredients()
-    },
-    async onRead(data: any){
-      await readAction(data);
-    }
   },
   components: {
     IonContent,
