@@ -14,7 +14,7 @@
         </ion-buttons>
 
         <ion-title>
-          <ion-button @click="refresh">
+          <ion-button @click="onRefresh">
             refresh
           </ion-button>
         </ion-title>
@@ -25,21 +25,22 @@
       <ion-refresher slot="fixed" @ionRefresh="refresh($event)">
         <ion-refresher-content></ion-refresher-content>
       </ion-refresher>
-      <ion-list>
-        <IngredientsItem
-          v-for="ingredients in ingredientsList.filter(i => !i.read)" 
-          :key="ingredients.id" 
-          :ingredients="ingredients" 
-          @click="onRead(ingredients)"
-        />
-      </ion-list>
+      <ion-grid fixed>
+        <ion-list>
+          <IngredientsItem
+            v-for="ingredients in ingredientsList.filter(i => !i.read)" 
+            :key="ingredients.id" 
+            :ingredients="ingredients" 
+            @click="onRead(ingredients)"
+          />
+        </ion-list>
+      </ion-grid>
     </ion-content>
   </ion-page>
 </template>
 
 <script lang="ts">
-
-import { IonContent, IonHeader,IonBackButton, IonList, IonPage, IonRefresher, IonRefresherContent, IonTitle, IonToolbar } from '@ionic/vue';
+import { IonContent, IonHeader,IonBackButton, IonButtons, IonButton, IonList, IonPage, IonRefresher, IonRefresherContent, IonTitle, IonToolbar,IonGrid } from '@ionic/vue';
 import IngredientsItem from '@/components/IngredientsItem.vue';
 import { defineComponent } from 'vue';
 import { getIngredientsList, fetchIngredients, readAction,getFinishedList } from '@/data/ingredients';
@@ -49,6 +50,7 @@ export default defineComponent({
   name: 'Home',
   setup() {
     const router = useRouter();
+    fetchIngredients();
     return {
       router,
       ingredientsList: getIngredientsList(),
@@ -58,7 +60,10 @@ export default defineComponent({
 
   methods: {
     async refresh(ev: CustomEvent){
-      // this.ingredientsList = await fetchIngredients()
+      await fetchIngredients()
+      ev.detail.complete();
+    },
+    async onRefresh(){
       await fetchIngredients()
     },
     async onRead(data: any){
@@ -75,7 +80,10 @@ export default defineComponent({
     IonTitle,
     IonToolbar,
     IonBackButton,
+    IonButtons,
+    IonButton,
     IngredientsItem,
+    IonGrid
   },
 });
 </script>
