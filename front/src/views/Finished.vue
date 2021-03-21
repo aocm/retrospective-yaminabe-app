@@ -13,11 +13,10 @@
       <ion-refresher slot="fixed" @ionRefresh="refresh($event)">
         <ion-refresher-content></ion-refresher-content>
       </ion-refresher>
-      <ion-grid fixed >
-
-      <ion-list>
-        <IngredientsItem v-for="ingredients in finishedList" :key="ingredients.id" :ingredients="ingredients" />
-      </ion-list>
+      <ion-grid fixed>
+        <ion-list>
+          <IngredientsItem v-for="ingredients in finishedList" :key="ingredients.id" :ingredients="ingredients" />
+        </ion-list>
       </ion-grid>
     </ion-content>
   </ion-page>
@@ -28,7 +27,6 @@
 import { IonContent, IonHeader, IonBackButton, IonButtons, IonList, IonPage, IonRefresher, IonRefresherContent, IonTitle, IonToolbar,IonGrid  } from '@ionic/vue';
 import IngredientsItem from '@/components/IngredientsItem.vue';
 import { defineComponent, computed } from 'vue';
-import { getIngredientsList, getFinishedList, fetchIngredients } from '@/data/ingredients';
 import { useStore } from "vuex"
 
 export default defineComponent({
@@ -40,14 +38,14 @@ export default defineComponent({
       ingredientsList: computed(() => store.getters.allItem),
       finishedList: computed(() => store.getters.finishedList),
       finishedCount: computed(() => store.getters.finishedCount),
+      refresh: async (ev: CustomEvent) => {
+        await store.dispatch("refresh")
+        ev.detail.complete();
+      },
       onRefresh:() => store.dispatch("refresh"),
     }
   },
   methods: {
-    async refresh(ev: CustomEvent){
-      await this.store.dispatch("refresh")
-      ev.detail.complete();
-    },
   },
   components: {
     IonContent,

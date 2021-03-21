@@ -28,6 +28,9 @@ const getters: GetterTree<State, any> = {
   finishedList: (state: State) => {
     return state.ingredientsList.filter(i => i.read);
   },
+  unreadList: (state: State) => {
+    return state.ingredientsList.filter(i => !i.read);
+  },
   findById: (state) => (id: number)=> state.ingredientsList.find(i => i.id === id)
 };
 

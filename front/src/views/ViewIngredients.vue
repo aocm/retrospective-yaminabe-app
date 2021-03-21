@@ -34,7 +34,6 @@
 import { useRoute } from 'vue-router';
 import { IonBackButton, IonButtons, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonNote, IonPage, IonToolbar } from '@ionic/vue';
 import { personCircle } from 'ionicons/icons';
-import { getIngredients } from '../data/ingredients';
 import { defineComponent, computed } from 'vue';
 import { useStore } from "vuex"
 
