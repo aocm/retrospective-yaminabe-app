@@ -8,7 +8,7 @@
           </ion-button>
         </ion-title>
         <ion-title>
-          {{`終了 ${finishedCount} / 全体 ${ingredientsList.length} 件`}}
+          {{`既読 ${finishedCount} / 全体 ${ingredientsList.length} 件`}}
         </ion-title>
         <ion-buttons slot="start">
           <ion-back-button :text="'戻る'" default-href="/"></ion-back-button>
@@ -42,15 +42,26 @@
         </ion-list>
       </ion-grid>
     </ion-content>
+    
+    <ion-footer>
+      <ion-toolbar>
+        <ion-title>
+          <ion-button color="secondary" @click="openModal">
+            追加投稿フォーム
+          </ion-button>
+        </ion-title>
+      </ion-toolbar>
+    </ion-footer>
   </ion-page>
 </template>
 
 <script lang="ts">
-import { IonContent, IonHeader,IonBackButton, IonButtons, IonButton, IonList, IonPage, IonRefresher, IonRefresherContent, IonTitle, IonToolbar,IonGrid } from '@ionic/vue';
+import { IonContent, IonHeader,IonBackButton, IonButtons, IonButton, IonList, IonPage, IonRefresher, IonRefresherContent, IonTitle, IonToolbar,IonGrid, modalController } from '@ionic/vue';
 import IngredientsItem from '@/components/IngredientsItem.vue';
 import { defineComponent, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useStore } from "vuex"
+import InputForm from '@/components/InputForm.vue';
 
 export default defineComponent({
   name: 'Home',
@@ -78,6 +89,24 @@ export default defineComponent({
       onRead:(data: any) => {
         store.dispatch("read", data)
       },
+      openModal: async ()=>{
+        const modal = await modalController
+          .create({
+            component: InputForm,
+            componentProps: {
+              title: '追加投稿フォーム',
+            },
+          })
+        modal.present();
+        const { data } = await modal.onDidDismiss();
+        console.log("onDidDismiss", data)
+        if(data.cancel){
+          console.log("cancel")
+
+        }else{
+          store.dispatch("createIngredients", data)
+        }
+      }
     }
   },
   components: {

@@ -2,7 +2,7 @@
   <ion-page>
     <ion-header :translucent="true">
       <ion-toolbar>
-        <ion-title>{{`終了 ${finishedCount} / 全体 ${ingredientsList.length} 件`}}</ion-title>
+        <ion-title>{{`既読 ${finishedCount} / 全体 ${ingredientsList.length} 件`}}</ion-title>
         <ion-buttons slot="start">
           <ion-back-button :text="'戻る'" default-href="/home"></ion-back-button>
         </ion-buttons>
@@ -44,8 +44,6 @@ export default defineComponent({
       },
       onRefresh:() => store.dispatch("refresh"),
     }
-  },
-  methods: {
   },
   components: {
     IonContent,

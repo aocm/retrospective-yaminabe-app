@@ -83,6 +83,17 @@ const actions: ActionTree<State, any> = {
   fetchIngredients: async ({dispatch}, id: number)=>{
     return await fetch(`${API_BASE}/ingredients/${id}`).then((res) => res.json())
   },
+
+  createIngredients: async ({dispatch}, data: Ingredients)=>{
+    await fetch(`${API_BASE}/ingredients`,{
+      method:'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data) 
+    }).then((res) => dispatch("refresh"))
+    
+  },
 };
 
 export const store = createStore<State>({

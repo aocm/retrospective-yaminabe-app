@@ -11,7 +11,22 @@
               </ion-card-header>
 
               <ion-card-content>
-                説明【TBA】
+                <h1>説明</h1>
+                <ol style="text-align: left;" >
+                  <li>
+                    データを投入します。
+                  </li>
+                  <li>
+                    ランダムPICKUPボタンを利用して表示します。
+                  </li>
+                  <li>
+                    表示された人はテーマについて話してもらいます。
+                  </li>
+                  <li>
+                    他の人はフィードバックもしくはよかったことを伝えます。
+                  </li>
+                </ol>
+                  
               </ion-card-content>
             </ion-card>
             <ion-button @click="() => router.push('/home')">

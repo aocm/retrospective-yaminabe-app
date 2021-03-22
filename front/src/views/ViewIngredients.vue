@@ -8,24 +8,26 @@
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true" v-if="ingredients">
-      <ion-item>
-        <ion-icon :icon="personCircle" color="primary"></ion-icon>
-        <ion-label class="ion-text-wrap">
-          <h2>
-            {{ ingredients.fromName }}
-            <span class="date">
-              <ion-note>{{ ingredients.date }}</ion-note>
-            </span>
-          </h2>
-        </ion-label>
-      </ion-item>
-      
-      <div class="ion-padding">
-        <h1>{{ ingredients.subject }}</h1>
-        <p>
-          {{ingredients.contents}}
-        </p>
-      </div>
+      <ion-grid fixed>
+        <ion-item>
+          <ion-icon :icon="personCircle" color="primary"></ion-icon>
+          <ion-label class="ion-text-wrap">
+            <h2>
+              {{ ingredients.fromName }}
+              <span class="date">
+                <ion-note>{{ ingredients.date }}</ion-note>
+              </span>
+            </h2>
+          </ion-label>
+        </ion-item>
+        
+        <div class="ion-padding">
+          <h1>{{ ingredients.subject }}</h1>
+          <p>
+            {{ingredients.contents}}
+          </p>
+        </div>
+      </ion-grid>
     </ion-content>
   </ion-page>
 </template>
