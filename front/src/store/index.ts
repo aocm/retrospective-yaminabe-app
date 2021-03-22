@@ -57,9 +57,10 @@ const mutations: MutationTree<State> = {
   },
 };
 
+const API_BASE = `${window.origin}/api` // TODO 環境変数
 const actions: ActionTree<State, any> = {
   refresh: async ({commit})=>{
-    await fetch("http://localhost:3000/ingredients")
+    await fetch(`${API_BASE}/ingredients`)
       .then((res) => res.json())
       .then((json) => {
         commit(MUTATIONS.REFRESH, json);
@@ -70,7 +71,7 @@ const actions: ActionTree<State, any> = {
     console.log("start")
     console.log("data ",data)
     data.read = true;
-    await fetch(`http://localhost:3000/ingredients/${data.id}`,{
+    await fetch(`${API_BASE}/ingredients/${data.id}`,{
       method:'put',
       headers: {
         'Content-Type': 'application/json'
@@ -80,7 +81,7 @@ const actions: ActionTree<State, any> = {
   },
 
   fetchIngredients: async ({dispatch}, id: number)=>{
-    return await fetch(`http://localhost:3000/ingredients/${id}`).then((res) => res.json())
+    return await fetch(`${API_BASE}/ingredients/${id}`).then((res) => res.json())
   },
 };
 
