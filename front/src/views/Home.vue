@@ -37,7 +37,6 @@
             v-for="ingredients in ingredientsList.filter(i => !i.read)" 
             :key="ingredients.id" 
             :ingredients="ingredients" 
-            @click="onRead(ingredients)"
           />
         </ion-list>
       </ion-grid>

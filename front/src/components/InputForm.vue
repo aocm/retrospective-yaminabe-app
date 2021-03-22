@@ -14,7 +14,7 @@
   </ion-item>
   <ion-item>
     <ion-label position="stacked">内容</ion-label>
-    <ion-input v-model="contents"></ion-input>
+    <ion-textarea v-model="contents"></ion-textarea>
   </ion-item>
   <ion-footer>
     <ion-toolbar>
@@ -39,7 +39,8 @@
 <script>
 import {
   IonContent, 
-  IonInput, 
+  IonInput,
+  IonTextarea,
   IonHeader,
   IonTitle,
   IonToolbar,
@@ -82,11 +83,12 @@ export default defineComponent({
     }
   },
   components: { 
-  IonInput, 
+    IonInput, 
     IonHeader, 
     IonTitle, 
     IonToolbar,
     IonButtons,
+    IonTextarea
   }
 });
 </script>

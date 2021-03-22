@@ -13,8 +13,6 @@ const state: State = {
   ],
 };
 
-
-
 const getters: GetterTree<State, any> = {
   size: (state: State) => {
     return state.ingredientsList.length;
@@ -66,11 +64,26 @@ const actions: ActionTree<State, any> = {
         commit(MUTATIONS.REFRESH, json);
       });
   },
-
+  
+  /**
+   * 既読にする機能
+   */
   read: async ({dispatch}, data: Ingredients)=>{
-    console.log("start")
-    console.log("data ",data)
     data.read = true;
+    await fetch(`${API_BASE}/ingredients/${data.id}`,{
+      method:'put',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data) 
+    }).then((res) => dispatch("refresh"))
+  },
+
+  /**
+   * 未読に戻す機能
+   */
+  unread: async ({dispatch}, data: Ingredients)=>{
+    data.read = false;
     await fetch(`${API_BASE}/ingredients/${data.id}`,{
       method:'put',
       headers: {

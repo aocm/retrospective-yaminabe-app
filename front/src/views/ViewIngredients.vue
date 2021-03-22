@@ -14,8 +14,11 @@
           <ion-label class="ion-text-wrap">
             <h2>
               {{ ingredients.fromName }}
-              <span class="date">
-                <ion-note>{{ ingredients.date }}</ion-note>
+              <span class="buttons">
+                <span>{{ingredients.read? "既読済み" : "未読" + " 状態 / "}}</span>
+                <ion-button v-if="ingredients.read" @click="onUnRead" color="tertiary">UNREAD</ion-button>
+                <ion-button v-else @click="onRead">READ</ion-button>
+                <!-- <ion-note>{{ ingredients.date }}</ion-note> -->
               </span>
             </h2>
           </ion-label>
@@ -23,9 +26,7 @@
         
         <div class="ion-padding">
           <h1>{{ ingredients.subject }}</h1>
-          <p>
-            {{ingredients.contents}}
-          </p>
+          <p style="white-space: pre-wrap;">{{ingredients.contents}}</p>
         </div>
       </ion-grid>
     </ion-content>
@@ -34,7 +35,7 @@
 
 <script lang="ts">
 import { useRoute } from 'vue-router';
-import { IonBackButton, IonButtons, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonNote, IonPage, IonToolbar } from '@ionic/vue';
+import { IonBackButton, IonButtons, IonButton, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonNote, IonPage, IonToolbar } from '@ionic/vue';
 import { personCircle } from 'ionicons/icons';
 import { defineComponent, computed } from 'vue';
 import { useStore } from "vuex"
@@ -55,22 +56,34 @@ export default defineComponent({
     const route = useRoute();
     const store = useStore()
     // const ingredients = getIngredients(parseInt(route.params.id as string, 10));
+    // TODO 過剰なリフレッシュになるため、タイミングの最適化
+    if(!store.getters.findById(Number(route.params.id))){
+      store.dispatch("refresh")
+
+    }
 
     return {
       route,
       store,
+      onRead:() => {
+        store.dispatch("read", store.getters.findById(Number(route.params.id)))
+      },
+      onUnRead:() => {
+        store.dispatch("unread", store.getters.findById(Number(route.params.id)))
+      },
       ingredients: computed(() => store.getters.findById(Number(route.params.id))),
     }
   },
   components: {
     IonBackButton,
     IonButtons,
+    IonButton,
     IonContent,
     IonHeader,
     IonIcon,
     IonItem,
     IonLabel,
-    IonNote,
+    // IonNote,
     IonPage,
     IonToolbar,
   },
@@ -92,7 +105,7 @@ ion-item h2 {
   font-weight: 600;
 }
 
-ion-item .date {
+ion-item .buttons {
   float: right;
   align-items: center;
   display: flex;
