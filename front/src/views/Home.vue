@@ -67,10 +67,14 @@ export default defineComponent({
   setup() {
     const router = useRouter();
     const store = useStore()
+    const ingredientsList = computed(() => store.getters.allItem)
+    if(ingredientsList.value.length === 0){
+      store.dispatch("refresh")
+    }
     return {
       router,
       store,
-      ingredientsList: computed(() => store.getters.allItem),
+      ingredientsList,
       finishedCount: computed(() => store.getters.finishedCount),
       refresh: async (ev: CustomEvent) => {
         await store.dispatch("refresh")
