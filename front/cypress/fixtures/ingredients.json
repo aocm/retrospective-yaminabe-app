@@ -1,0 +1,42 @@
+[
+  {
+    "contents": "aaaaaa",
+    "fromName": "山田 太郎",
+    "subject": "XXXについて",
+    "date": "",
+    "read": false,
+    "id": 1
+  },
+  {
+    "contents": "bbbbbb",
+    "fromName": "山田 太郎",
+    "subject": "XXXについて",
+    "date": "",
+    "read": false,
+    "id": 2
+  },
+  {
+    "contents": "ccccccc",
+    "fromName": "山田 太郎",
+    "subject": "XXXについて",
+    "date": "",
+    "read": false,
+    "id": 3
+  },
+  {
+    "contents": "ddddddd",
+    "fromName": "山田 太郎",
+    "subject": "XXXについて",
+    "date": "",
+    "read": false,
+    "id": 4
+  },
+  {
+    "contents": "eeeeee",
+    "fromName": "山田 太郎",
+    "subject": "XXXについて",
+    "date": "",
+    "read": false,
+    "id": 5
+  }
+]

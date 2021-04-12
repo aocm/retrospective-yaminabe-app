@@ -3,7 +3,10 @@
     <ion-header :translucent="true">
       <ion-toolbar>
         <ion-title>
-          <ion-button color="secondary" @click="randomPickup">
+          <ion-button
+            id="id_random_pickup_button"
+            color="secondary" @click="randomPickup"
+          >
             ランダムPICK UP
           </ion-button>
         </ion-title>

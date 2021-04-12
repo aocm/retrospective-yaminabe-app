@@ -6,7 +6,7 @@
           <ion-title style="text-align: center;">
             <ion-card>
               <ion-card-header>
-                <ion-card-title>ふりかえり闇鍋をはじめます</ion-card-title>
+                <ion-card-title id="id_title">ふりかえり闇鍋をはじめます</ion-card-title>
                 <img src="https://files.speakerdeck.com/presentations/4c1db6dc7c214b1eba37ea822fedfc6d/slide_61.jpg" />
               </ion-card-header>
 
@@ -29,7 +29,10 @@
                   
               </ion-card-content>
             </ion-card>
-            <ion-button @click="() => router.push('/home')">
+            <ion-button
+              id="id_gotohome_button"
+              @click="() => router.push('/home')"
+            >
               会場へ
             </ion-button>
           </ion-title>
