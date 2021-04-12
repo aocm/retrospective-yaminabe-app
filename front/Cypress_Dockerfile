@@ -1,0 +1,8 @@
+# 参考 https://qiita.com/tomoyamachi/items/9452aead012e749a36d6
+
+FROM cypress/base:10
+# 日本語フォント表示用にnoto-cjkを追加
+RUN apt-get update
+RUN apt-get install --no-install-recommends -y fonts-noto fonts-noto-cjk
+WORKDIR /app
+RUN npx cypress verify

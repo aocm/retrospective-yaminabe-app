@@ -1,0 +1,24 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+      dockerfile: ./Nginx_Dockerfile
+    ports:
+      - "8080:80"
+  integration-test:
+    build:
+      context: .
+      dockerfile: ./Cypress_Dockerfile
+    command: npx cypress run
+    depends_on:
+      - web
+    environment:
+      - CYPRESS_baseUrl=http://web
+      - CYPRESS_browser=chrome
+      - CYPRESS_screenshotsFolder=/results/screenshots
+      - CYPRESS_videosFolder=/results/videos
+    volumes:
+      - ./cypress:/app/cypress
+      - ./cypress.json:/app/cypress.json
+      - ./cypress/results:/results
