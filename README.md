@@ -16,3 +16,7 @@
     1. 開発コンテナでfrontディレクトリに移動する
     1. `npm run build`を実行し、distディレクトリを作成する。
     1. ビルド結果をもとに、次のコマンドを実行するとNGINX＋Cypressを起動する。`docker-compose -f integration-test-docker-compose.yml up `
+
+## 記録
+- test:e2eを実行するとエラーになる  
+https://github.com/TheBrainFamily/cypress-cucumber-preprocessor/issues/460
