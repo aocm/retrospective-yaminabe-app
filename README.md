@@ -15,7 +15,7 @@
 - 結合テスト
     1. 開発コンテナでfrontディレクトリに移動する
     1. `npm run build`を実行し、distディレクトリを作成する。
-    1. ビルド結果をもとに、次のコマンドを実行するとNGINX＋Cypressを起動する。`docker-compose -f integration-test-docker-compose.yml up `
+    1. ビルド結果をもとに、次のコマンドを実行するとNGINX＋Cypressを起動する。` docker-compose -f integration-test-docker-compose.yml up --build --abort-on-container-exit --exit-code-from integration-test`
 
 ## 記録
 - test:e2eを実行するとエラーになる  

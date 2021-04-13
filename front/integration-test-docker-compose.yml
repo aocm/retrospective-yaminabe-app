@@ -4,8 +4,6 @@ services:
     build:
       context: .
       dockerfile: ./Nginx_Dockerfile
-    ports:
-      - "8080:80"
   integration-test:
     build:
       context: .

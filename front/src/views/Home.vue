@@ -48,7 +48,7 @@
     <ion-footer>
       <ion-toolbar>
         <ion-title>
-          <ion-button color="secondary" @click="openModal">
+          <ion-button id="add_form" color="secondary" @click="openModal">
             追加投稿フォーム
           </ion-button>
         </ion-title>
