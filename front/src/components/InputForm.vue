@@ -38,14 +38,12 @@
 
 <script>
 import {
-  IonContent, 
   IonInput,
   IonTextarea,
   IonHeader,
   IonTitle,
   IonToolbar,
   IonButtons,
-  IonBackButton,
   modalController
 } from '@ionic/vue';
 import { defineComponent } from 'vue';

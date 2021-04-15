@@ -76,7 +76,7 @@ const actions: ActionTree<State, any> = {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(data) 
-    }).then((res) => dispatch("refresh"))
+    }).then(() => dispatch("refresh"))
   },
 
   /**
@@ -90,7 +90,7 @@ const actions: ActionTree<State, any> = {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(data) 
-    }).then((res) => dispatch("refresh"))
+    }).then(() => dispatch("refresh"))
   },
 
   fetchIngredients: async ({dispatch}, id: number)=>{
@@ -104,7 +104,7 @@ const actions: ActionTree<State, any> = {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(data) 
-    }).then((res) => dispatch("refresh"))
+    }).then(() => dispatch("refresh"))
     
   },
 };

@@ -35,7 +35,7 @@
 
 <script lang="ts">
 import { useRoute } from 'vue-router';
-import { IonBackButton, IonButtons, IonButton, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonNote, IonPage, IonToolbar } from '@ionic/vue';
+import { IonBackButton, IonButtons, IonButton, IonContent, IonHeader, IonIcon, IonItem, IonLabel, IonPage, IonToolbar } from '@ionic/vue';
 import { personCircle } from 'ionicons/icons';
 import { defineComponent, computed } from 'vue';
 import { useStore } from "vuex"

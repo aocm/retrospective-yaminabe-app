@@ -6,15 +6,14 @@ beforeEach(() => {
     statusCode: 200,
     body: 'it worked!',
   })
+  cy.visit('/')
 })
 describe('画面表示、画面遷移の確認', () => {
   it('トップページの確認', () => {
-    cy.visit('/')
     cy.get('#id_title').should('have.text', 'ふりかえり闇鍋をはじめます')
     cy.screenshot('トップページの確認')
   })
   it('会場へ移動できることを確認する', () => {
-    cy.visit('/')
     cy.contains('会場へ').click()
     cy.wait('@getIngredients')
     cy.wait(500)
@@ -22,6 +21,5 @@ describe('画面表示、画面遷移の確認', () => {
     expect(cy.contains('追加投稿フォーム')).to.exist
     cy.screenshot('会場の確認')
   })
-  
   
 })
