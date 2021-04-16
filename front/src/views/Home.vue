@@ -64,23 +64,24 @@ import { defineComponent, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useStore } from "vuex"
 import InputForm from '@/components/InputForm.vue';
+import Ingredients  from '../domain/ingredients'
 
 export default defineComponent({
   name: 'Home',
   setup() {
     const router = useRouter();
     const store = useStore()
-    const ingredientsList = computed(() => store.getters.allItem)
-    if(ingredientsList.value.length === 0){
-      store.dispatch("refresh")
+    const ingredients = new Ingredients(store, null)
+    if(ingredients.ingredientsList.value.length === 0){
+      ingredients.refresh()
     }
     return {
       router,
       store,
-      ingredientsList,
-      finishedCount: computed(() => store.getters.finishedCount),
+      ingredientsList: ingredients.ingredientsList,
+      finishedCount: ingredients.finishedCount,
       refresh: async (ev: CustomEvent) => {
-        await store.dispatch("refresh")
+        await ingredients.refresh()
         ev.detail.complete();
       },
       randomPickup: () => {

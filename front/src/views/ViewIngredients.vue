@@ -39,39 +39,33 @@ import { IonBackButton, IonButtons, IonButton, IonContent, IonHeader, IonIcon, I
 import { personCircle } from 'ionicons/icons';
 import { defineComponent, computed } from 'vue';
 import { useStore } from "vuex"
+import Ingredients  from '../domain/ingredients'
 
 export default defineComponent({
   name: 'ViewIngredients',
-  data() {
+
+  setup() {
+    const route = useRoute();
+    const store = useStore()
+    const ingredients = new Ingredients(store, route)
+    // const ingredients = getIngredients(parseInt(route.params.id as string, 10));
+    // TODO 過剰なリフレッシュになるため、タイミングの最適化
+    if(!store.getters.findById(Number(route.params.id))){
+      store.dispatch("refresh")
+    }
+
     return {
       personCircle,
+      route,
+      store,
+      onRead: ingredients.read,
+      onUnRead: ingredients.unread,
+      ingredients: ingredients.item,
       getBackButtonText: () => {
         const win = window as any;
         const mode = win && win.Ionic && win.Ionic.mode;
         return mode === 'ios' ? 'Inbox' : '';
       }
-    }
-  },
-  setup() {
-    const route = useRoute();
-    const store = useStore()
-    // const ingredients = getIngredients(parseInt(route.params.id as string, 10));
-    // TODO 過剰なリフレッシュになるため、タイミングの最適化
-    if(!store.getters.findById(Number(route.params.id))){
-      store.dispatch("refresh")
-
-    }
-
-    return {
-      route,
-      store,
-      onRead:() => {
-        store.dispatch("read", store.getters.findById(Number(route.params.id)))
-      },
-      onUnRead:() => {
-        store.dispatch("unread", store.getters.findById(Number(route.params.id)))
-      },
-      ingredients: computed(() => store.getters.findById(Number(route.params.id))),
     }
   },
   components: {
