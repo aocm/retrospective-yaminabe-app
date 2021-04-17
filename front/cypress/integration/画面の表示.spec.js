@@ -18,8 +18,16 @@ describe('画面表示、画面遷移の確認', () => {
     cy.wait('@getIngredients')
     cy.wait(500)
     cy.get('ion-button[id="add_form"]').should('have.text', ' 追加投稿フォーム ') // なぜ半角スペースで囲まれているか不明
-    expect(cy.contains('追加投稿フォーム')).to.exist
     cy.screenshot('会場の確認')
+  })
+  it('詳細ページへ遷移する', () => {
+    cy.contains('会場へ').click()
+    cy.wait('@getIngredients')
+    cy.wait(500)
+    cy.contains('山田 1郎').click()
+    cy.wait(500)
+    cy.get('#fromName').should('have.text', '山田 1郎')
+    cy.screenshot('詳細ページ')
   })
   
 })

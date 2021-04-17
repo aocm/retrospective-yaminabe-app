@@ -1,7 +1,7 @@
 [
   {
     "contents": "aaaaaa",
-    "fromName": "山田 太郎",
+    "fromName": "山田 1郎",
     "subject": "XXXについて",
     "date": "",
     "read": false,
@@ -9,7 +9,7 @@
   },
   {
     "contents": "bbbbbb",
-    "fromName": "山田 太郎",
+    "fromName": "山田 2郎",
     "subject": "XXXについて",
     "date": "",
     "read": false,
@@ -17,7 +17,7 @@
   },
   {
     "contents": "ccccccc",
-    "fromName": "山田 太郎",
+    "fromName": "山田 3郎",
     "subject": "XXXについて",
     "date": "",
     "read": false,
@@ -25,7 +25,7 @@
   },
   {
     "contents": "ddddddd",
-    "fromName": "山田 太郎",
+    "fromName": "山田 4郎",
     "subject": "XXXについて",
     "date": "",
     "read": false,
@@ -33,7 +33,7 @@
   },
   {
     "contents": "eeeeee",
-    "fromName": "山田 太郎",
+    "fromName": "山田 5郎",
     "subject": "XXXについて",
     "date": "",
     "read": false,

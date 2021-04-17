@@ -10,10 +10,14 @@
     <ion-content :fullscreen="true" v-if="ingredients">
       <ion-grid fixed>
         <ion-item>
-          <ion-icon :icon="personCircle" color="primary"></ion-icon>
-          <ion-label class="ion-text-wrap">
-            <h2>
+          <ion-icon :icon="personCircle"   slot="start" color="primary"></ion-icon>
+          <ion-label class="ion-text-wrap" >
+            <h2 id="fromName">
               {{ ingredients.fromName }}
+            </h2>
+          </ion-label>
+          <ion-label class="ion-text-wrap"  slot="end">
+            <h2> 
               <span class="buttons">
                 <span>{{ingredients.read? "既読済み" : "未読" + " 状態 / "}}</span>
                 <ion-button v-if="ingredients.read" @click="onUnRead" color="tertiary">UNREAD</ion-button>

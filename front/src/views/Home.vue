@@ -22,9 +22,10 @@
         <ion-buttons slot="primary">
         </ion-buttons>
         <ion-buttons slot="end">
-          <ion-button @click="() => router.push('/finished')">
-            Done
-          </ion-button>
+          <ion-button
+            id="goto_finished"
+            @click="() => router.push('/finished')"
+          >Done</ion-button>
         </ion-buttons>
 
       </ion-toolbar>
