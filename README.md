@@ -1,7 +1,10 @@
-# yaminabe-app
+# retrospective-aminabe-app
 
 <img src="https://files.speakerdeck.com/presentations/4c1db6dc7c214b1eba37ea822fedfc6d/slide_61.jpg" />
 
+
+viva_tweet_xさんのQiita記事およびSlideshareから引用しております。
+https://qiita.com/viva_tweet_x/items/cc3bad3bd298406b6cc7
 
 
 ## 実際の画面（Cypressのスクリーンショット）と使い方
